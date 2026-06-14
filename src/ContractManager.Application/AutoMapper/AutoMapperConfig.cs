@@ -1,5 +1,6 @@
-﻿using AutoMapper;
+using AutoMapper;
 using ContractManager.Application.AutoMapper.Profiles;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace ContractManager.Application.AutoMapper
 {
@@ -10,7 +11,7 @@ namespace ContractManager.Application.AutoMapper
             var mapperConfiguration = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new EntityToCommandProfile());
-            });
+            }, NullLoggerFactory.Instance);
             return mapperConfiguration;
         }
     }

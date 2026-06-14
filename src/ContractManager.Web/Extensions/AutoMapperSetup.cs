@@ -1,6 +1,5 @@
-﻿using System.Reflection;
 using AutoMapper;
-using ContractManager.Application.AutoMapper;
+using ContractManager.Application.AutoMapper.Profiles;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ContractManager.Web.Extensions
@@ -9,8 +8,8 @@ namespace ContractManager.Web.Extensions
     {
         public static void AddAutoMapperSetup(this IServiceCollection services)
         {
-            var mapper = AutoMapperConfig.ConfigureMappings();
-            services.AddAutoMapper(x => mapper.CreateMapper(), Assembly.Load("ContractManager.Application"));
+            services.AddAutoMapper(config =>
+                config.AddProfile<EntityToCommandProfile>());
         }
     }
 }
